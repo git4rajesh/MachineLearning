@@ -1,0 +1,11 @@
+The basic idea of
+image filtering is that we take each pixel value in an image, and replace it with a new value calculated from
+the original value of the pixel and nearby pixels, according to some recipe for combining these values.
+
+
+
+# https://www.pyimagesearch.com/2015/03/02/convert-url-to-image-with-python-and-opencv/
+
+# https://www.tutorialkart.com/opencv/python/opencv-python-gaussian-image-smoothing/
+
+# http://setosa.io/ev/image-kernels/
