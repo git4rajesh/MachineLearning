@@ -46,36 +46,38 @@ In the above snippet we have 3 * 3 kernel and 1 * 1 kernel respectively.
 2. Why should we only (well mostly) use 3x3 Kernels?
 	
 	Need for odd shape for Kernel:
-	------------------------------
+	=============================
 			We generally opt for odd sized kernels like a. 3 * 3 b. 5 *5 or 7 * 7.
-		The rationale is that, the odd size kernels can symmetrically demarcate the input images into left and right.
-		Say for example an Image of a Triangle. a 3 * 3 Kernel can effectively convolve over it without any wastage.
+		The rationale is that, the odd size kernels can symmetrically demarcate the input images 
+		into left and right.
+		Say for example an Image of a Triangle. a 3 * 3 Kernel can effectively convolve over it 
+		without any wastage.
 		So we opt for odd sized kernels.
 		
 		
 	Need for 3 * 3 Kernel over other Odd sized Kernels:
-	--------------------------------------------------
+	===================================================
 			The 3 * 3 Kernel is optimized to convolve over any input image.
 			They use less parameters/ weights compared to 5 * 5 or 7 * 7 Kernels.
 			
 			For example, lets says we have an 7 * 7 input image.
 			
 			case i: With 3 * 3 Kernel
-			-------------------------
+			=========================
 			5 * 5 (Image) ---> 3 * 3 (Kernel) ---> 3 * 3 (Image) ---> 3 * 3(Kernel) ---> 1 * 1
 			
 			So in this case all we need is 18 Parameters to reach the Global Receptive Field.
 			
 			
 			case ii: With 5 * 5 Kernel
-			--------------------------
+			===========================
 			5 * 5 (Image) ---> 5 * 5 (Kernel) ---> 1 * 1 
 			
 			In this case we need 25 Parameters to reach the Global Receptive Field.
 			
 			
 			case iii: With 7 * 7 Kernel
-			----------------------------
+			===========================
 			Too big a Kernel size to accommodate all sizes of images. 
 			So cant be used for small sized images.
 			
