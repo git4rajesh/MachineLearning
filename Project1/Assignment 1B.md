@@ -60,7 +60,7 @@ In the above snippet we have 3 * 3 kernel and 1 * 1 kernel respectively.
 			The 3 * 3 Kernel is optimized to convolve over any input image.
 			They use less parameters/ weights compared to 5 * 5 or 7 * 7 Kernels.
 			
-			For example, lets says we have an 7 * 7 input image.
+			For example, lets says we have an 5 * 5 input image.
 			
 			case i: With 3 * 3 Kernel
 			=========================
