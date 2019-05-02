@@ -9,3 +9,44 @@ the original value of the pixel and nearby pixels, according to some recipe for 
 # https://www.tutorialkart.com/opencv/python/opencv-python-gaussian-image-smoothing/
 
 # http://setosa.io/ev/image-kernels/
+
+https://www.codingame.com/playgrounds/2524/basic-image-manipulation/filtering
+
+
+a. Quiz
+b. Assignment
+c. 
+
+Ver
+[-1,0,1],
+[-1,0,1],
+[-1,0,1]
+
+1 0 -1
+2 0 -2
+1 0 -1
+
+hori
+
+[[-1,-1,-1],
+[0,0,0],
+[1,1,1]])
+
+1 2 1
+0 0 0
+-1 -2 -1
+
+
+Blur
+
+1  -1  0  
+0  1  -1
+-1  0 1
+
+
+Sharpen
+
+
+0    -0.5   0
+-0.5   3    -0.5
+0     -0.5   0
