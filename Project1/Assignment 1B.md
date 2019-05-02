@@ -1,20 +1,22 @@
-1. What are Channels and Kernels (according to EVA)?
+1. ==What are Channels and Kernels (according to EVA)?==
 
 Channels:
 =========
 Channels are the primary features of an image.
-How many numbers are used to specify the color of each pixel is the number of channels each pixel has.
+The numbers used to specify the color of each pixel is the number of channels each pixel has.
 Incase of a colored image, we have 3 channels such as Red, Green and Blue.
 
 A monochrome image that has one number per pixel has one channel.
 
-Feature Maps and Channels in CNN are one and the same. Each channel after the first layer of a CNN is a feature map. 
+**Feature Maps and Channels in CNN are one and the same.** Each channel after the first layer of a CNN is a feature map. 
 Before the first layer of CNN, RGB images have 3 channels (red, green & blue channels).
 
 Code snippet explaining Channels:
 ---------------------------------
 
+```
 Conv2d(3, 32, kernel_size=3, stride=2, padding=2)
+```
 
 The 3 is the number of input channels (R, G, B). 
 That 32 is the number of channels (i.e. feature maps) in the output of the first convolution operation. 
@@ -24,15 +26,14 @@ So, the first conv layer takes a color (RGB) image as input, applies 3x3 kernel 
 Kernels:
 =========
 a. In the context of convolutional neural networks, 
-				kernel = filter = feature detectors. 
+				**kernel = filter = feature detectors.** 
 				
 b. Features  like straight edges, simple colors, and curves are identified.
 c. Each filter can be thought of as storing a  template/pattern. When we convolve this filter across the corresponding input, we are basically trying to find out the similarity between the stored template and different locations in the input.
 
 d. A filter is represented by a vector of weights with which we convolve the input. They are learned and fine tuned using the Backpropagation Algorithm.
 
-Code snippet explaining Kernel convolution:
-------------------------------------------
+## Code snippet explaining Kernel convolution:
 
 	model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(28,28,1)))
 	model.add(Conv2D(10, (1, 1), activation='relu'))
@@ -40,58 +41,60 @@ Code snippet explaining Kernel convolution:
 
 In the above snippet we have 3 * 3 kernel and 1 * 1 kernel respectively.
 
-============================================================================================================================
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-2. Why should we only (well mostly) use 3x3 Kernels?
-	
-	Need for odd shape for Kernel:
-	=============================
-			We generally opt for odd sized kernels like a. 3 * 3 b. 5 *5 or 7 * 7.
-		The rationale is that, the odd size kernels can symmetrically demarcate the input images 
-		into left and right.Without this symmetry, we will have to account for distortions across the layers.
-		
-		Say for example an Image of a Triangle. a 3 * 3 Kernel can effectively convolve over it 
-		without any wastage.
-		So we opt for odd sized kernels.
-		
-		
-	Need for 3 * 3 Kernel over other Odd sized Kernels:
-	===================================================
-			The 3 * 3 Kernel is optimized to convolve over any input image.
-			They use less parameters/ weights compared to 5 * 5 or 7 * 7 Kernels.
-			Also due to the more number of layers a 3 * 3 kernel learns complex, more non-linear features.
-			
-			For example, lets says we have an 5 * 5 input image.
-			
-			case i: With 3 * 3 Kernel
-			=========================
-			5 * 5 (Image) ---> 3 * 3 (Kernel) ---> 3 * 3 (Image) ---> 3 * 3(Kernel) ---> 1 * 1
-			
-			So in this case all we need is 18 Parameters to reach the Global Receptive Field.
-			
-			
-			case ii: With 5 * 5 Kernel
-			===========================
-			5 * 5 (Image) ---> 5 * 5 (Kernel) ---> 1 * 1 
-			
-			In this case we need 25 Parameters to reach the Global Receptive Field.
-			
-			
-			case iii: With 7 * 7 Kernel
-			===========================
-			Too big a Kernel size to accommodate all sizes of images. 
-			So cant be used for small sized images.
-			
-			
-			case iv: With 1 * 1 Kernel
-			=========================
-			1 * 1 is not considered mostly as the features extracted from it would be fine grained and local, with no consideration for the neighboring pixels
-			
-	=========================================================================================================================
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-3. How many times do we need to perform 3x3 convolution operation to reach 1x1 from 199x199 (show calculations)
+2. ==Why should we only (well mostly) use 3x3 Kernels?==
+
+Need for odd shape for Kernel:
+-----------------------------
+​	We generally opt for odd sized kernels like a. 3 * 3 b. 5 *5 or 7 * 7.	
+
+​	The rationale is that, the odd size kernels can symmetrically demarcate the input images 
+​	into left and right.
+
+​	Without this symmetry, we will have to account for distortions across the layers.
+​	
+​	Say for example an Image of a Triangle. a 3 * 3 Kernel can effectively convolve over it 
+​	without any wastage.
+
+​	So we opt for odd sized kernels.
+
+
+
+## Need for 3 * 3 Kernel over other Odd sized Kernels:
+1. The 3 * 3 Kernel is optimized to convolve over any input image.
+2. They use less parameters/ weights compared to 5 * 5 or 7 * 7 Kernels.
+3. Also due to the more number of layers a 3 * 3 kernel learns complex, more non-linear features.
+
+For example, lets says we have an 5 * 5 input image.
+
+<u>**case i: With 3 * 3 Kernel**</u>
+
+5 * 5 (Image) ---> 3 * 3 (Kernel) ---> 3 * 3 (Image) ---> 3 * 3(Kernel) ---> 1 * 1
+
+So in this case all we need is 18 Parameters to reach the Global Receptive Field.
+
+
+<u>**case ii: With 5 * 5 Kernel**</u>
+
+5 * 5 (Image) ---> 5 * 5 (Kernel) ---> 1 * 1 
+
+In this case we need 25 Parameters to reach the Global Receptive Field.
+
+
+<u>**case iii: With 7 * 7 Kernel**</u>
+
+Too big a Kernel size to accommodate all sizes of images. 
+So cant be used for small sized images.
+
+
+<u>**case iv: With 1 * 1 Kernel**</u>
+
+1 * 1 is not considered mostly as the features extracted from it would be fine grained and local, with no consideration for the neighboring pixels
+
+
+
+3. ==How many times do we need to perform 3x3 convolution operation to reach 1x1 from 199x199 (show calculations)==
 
 199 * 199 ----> 3 * 3 (kernel) ---> 197 * 197 ---> 3 * 3 (kernel) ---> 195 * 195 ---> 3 * 3(kernel) ---> 193 * 193
 193 * 193 ----> 3 * 3 (kernel) ---> 191 * 191 ---> 3 * 3 (kernel) ---> 189 * 189 ---> 3 * 3(kernel) ---> 187 * 187
@@ -120,12 +123,10 @@ In the above snippet we have 3 * 3 kernel and 1 * 1 kernel respectively.
 79 * 79 ----> 3 * 3 (kernel) ---> 77 * 77 ---> 3 * 3 (kernel) ---> 75 * 75 ---> 3 * 3(kernel) ---> 73 * 73
 73 * 73 ---> 3 * 3 (kernel) ---> 71 * 71 ----> 3 * 3 (kernel) ---> 69 * 69 ---> 3 * 3 (kernel) ---> 67 * 67 ---> 3 * 3(kernel) ---> 65 * 65
 
-
 65 * 65 ----> 3 * 3 (kernel) ---> 63 * 63 ---> 3 * 3 (kernel) ---> 61 * 61 ---> 3 * 3(kernel) ---> 59 * 59
 59 * 59 ----> 3 * 3 (kernel) ---> 57 * 57 ---> 3 * 3 (kernel) ---> 55 * 55 ---> 3 * 3(kernel) ---> 53 * 53
 53 * 53 ---> 3 * 3 (kernel) ---> 51 * 51 ----> 3 * 3 (kernel) ---> 49 * 49 ---> 3 * 3 (kernel) ---> 47 * 47 ---> 3 * 3(kernel) ---> 45 * 45
 
- 
 45 * 45 ----> 3 * 3 (kernel) ---> 43 * 43 ---> 3 * 3 (kernel) ---> 41 * 41 ---> 3 * 3(kernel) ---> 39 * 39
 39 * 39 ----> 3 * 3 (kernel) ---> 37 * 37 ---> 3 * 3 (kernel) ---> 35 * 35 ---> 3 * 3(kernel) ---> 33 * 33
 33 * 33 ----> 3 * 3 (kernel) ---> 31 * 31 ---> 3 * 3 (kernel) ---> 29 * 29 ---> 3 * 3(kernel) ---> 27 * 27
@@ -136,4 +137,4 @@ In the above snippet we have 3 * 3 kernel and 1 * 1 kernel respectively.
 9 * 9 ----> 3 * 3 (kernel) ---> 7 * 7 ---> 3 * 3 (kernel) ---> 5 * 5 ---> 3 * 3(kernel) ---> 3 * 3
 3 * 3 ----> 3 * 3 (kernel) ---> 1 * 1
 
-Total Count of Convolution Operation = 100
+**Total Count of Convolution Operation = 100**
