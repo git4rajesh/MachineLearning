@@ -49,7 +49,8 @@ In the above snippet we have 3 * 3 kernel and 1 * 1 kernel respectively.
 	=============================
 			We generally opt for odd sized kernels like a. 3 * 3 b. 5 *5 or 7 * 7.
 		The rationale is that, the odd size kernels can symmetrically demarcate the input images 
-		into left and right.
+		into left and right.Without this symmetry, we will have to account for distortions across the layers.
+		
 		Say for example an Image of a Triangle. a 3 * 3 Kernel can effectively convolve over it 
 		without any wastage.
 		So we opt for odd sized kernels.
@@ -59,6 +60,7 @@ In the above snippet we have 3 * 3 kernel and 1 * 1 kernel respectively.
 	===================================================
 			The 3 * 3 Kernel is optimized to convolve over any input image.
 			They use less parameters/ weights compared to 5 * 5 or 7 * 7 Kernels.
+			Also due to the more number of layers a 3 * 3 kernel learns complex, more non-linear features.
 			
 			For example, lets says we have an 5 * 5 input image.
 			
@@ -81,6 +83,10 @@ In the above snippet we have 3 * 3 kernel and 1 * 1 kernel respectively.
 			Too big a Kernel size to accommodate all sizes of images. 
 			So cant be used for small sized images.
 			
+			
+			case iv: With 1 * 1 Kernel
+			=========================
+			1 * 1 is not considered mostly as the features extracted from it would be fine grained and local, with no consideration for the neighboring pixels
 			
 	=========================================================================================================================
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
