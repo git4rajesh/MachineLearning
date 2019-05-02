@@ -1,18 +1,17 @@
-1. ==What are Channels and Kernels (according to EVA)?==
+1. ## What are Channels and Kernels (according to EVA)?
 
-Channels:
-=========
-Channels are the primary features of an image.
-The numbers used to specify the color of each pixel is the number of channels each pixel has.
-Incase of a colored image, we have 3 channels such as Red, Green and Blue.
+   
 
-A monochrome image that has one number per pixel has one channel.
+### Channels:
+1. Channels are the primary features of an image.
+2. The numbers used to specify the color of each pixel is the number of channels each pixel has.
+3. Incase of a colored image, we have 3 channels such as Red, Green and Blue.
+4. A monochrome image that has one number per pixel has one channel.
+5. Feature Maps and Channels in CNN are one and the same. 
+6. Each channel after the first layer of a CNN is a feature map.
+7. Before the first layer of CNN, RGB images have 3 channels (red, green & blue channels).
 
-**Feature Maps and Channels in CNN are one and the same.** Each channel after the first layer of a CNN is a feature map. 
-Before the first layer of CNN, RGB images have 3 channels (red, green & blue channels).
-
-Code snippet explaining Channels:
----------------------------------
+### Code snippet explaining Channels:
 
 ```
 Conv2d(3, 32, kernel_size=3, stride=2, padding=2)
@@ -24,7 +23,7 @@ So, the first conv layer takes a color (RGB) image as input, applies 3x3 kernel 
 
 
 Kernels:
-=========
+---------
 a. In the context of convolutional neural networks, 
 				**kernel = filter = feature detectors.** 
 				
@@ -33,7 +32,7 @@ c. Each filter can be thought of as storing a  template/pattern. When we convolv
 
 d. A filter is represented by a vector of weights with which we convolve the input. They are learned and fine tuned using the Backpropagation Algorithm.
 
-## Code snippet explaining Kernel convolution:
+### Code snippet explaining Kernel convolution:
 
 	model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(28,28,1)))
 	model.add(Conv2D(10, (1, 1), activation='relu'))
@@ -43,10 +42,11 @@ In the above snippet we have 3 * 3 kernel and 1 * 1 kernel respectively.
 
 
 
-2. ==Why should we only (well mostly) use 3x3 Kernels?==
+2. ## Why should we only (well mostly) use 3x3 Kernels?
 
-Need for odd shape for Kernel:
------------------------------
+   
+
+### Need for odd shape for Kernel:
 ​	We generally opt for odd sized kernels like a. 3 * 3 b. 5 *5 or 7 * 7.	
 
 ​	The rationale is that, the odd size kernels can symmetrically demarcate the input images 
@@ -61,7 +61,7 @@ Need for odd shape for Kernel:
 
 
 
-## Need for 3 * 3 Kernel over other Odd sized Kernels:
+### Need for 3 * 3 Kernel over other Odd sized Kernels:
 1. The 3 * 3 Kernel is optimized to convolve over any input image.
 2. They use less parameters/ weights compared to 5 * 5 or 7 * 7 Kernels.
 3. Also due to the more number of layers a 3 * 3 kernel learns complex, more non-linear features.
@@ -94,8 +94,11 @@ So cant be used for small sized images.
 
 
 
-3. ==How many times do we need to perform 3x3 convolution operation to reach 1x1 from 199x199 (show calculations)==
+3. ## How many times do we need to perform 3x3 convolution operation to reach 1x1 from 199x199 (show calculations)
 
+   
+
+```
 199 * 199 ----> 3 * 3 (kernel) ---> 197 * 197 ---> 3 * 3 (kernel) ---> 195 * 195 ---> 3 * 3(kernel) ---> 193 * 193
 193 * 193 ----> 3 * 3 (kernel) ---> 191 * 191 ---> 3 * 3 (kernel) ---> 189 * 189 ---> 3 * 3(kernel) ---> 187 * 187
 187 * 187 ----> 3 * 3 (kernel) ---> 185 * 185 ---> 3 * 3 (kernel) ---> 183 * 183 ---> 3 * 3(kernel) ---> 181 * 181
@@ -136,5 +139,6 @@ So cant be used for small sized images.
 15 * 15 ----> 3 * 3 (kernel) ---> 13 * 13 ---> 3 * 3 (kernel) ---> 11 * 11 ---> 3 * 3(kernel) ---> 9 * 9
 9 * 9 ----> 3 * 3 (kernel) ---> 7 * 7 ---> 3 * 3 (kernel) ---> 5 * 5 ---> 3 * 3(kernel) ---> 3 * 3
 3 * 3 ----> 3 * 3 (kernel) ---> 1 * 1
+```
 
 **Total Count of Convolution Operation = 100**
