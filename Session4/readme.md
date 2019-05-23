@@ -79,9 +79,15 @@ Keep convolving till we have an input of size n * n Size where we have more numb
 
 ## Image Normalization:
 
-- The size of an image is normalized 
+- The ImageDataGenerator class can be used to rescale pixel values from the range of 0-255 to the range 0-1 preferred for neural network models.
+- Scaling data to the range of 0-1 is traditionally referred to as Normalization.
+- This can be achieved by setting the rescale argument to a ratio by which each pixel can be multiplied to achieve the desired range. In this case, the ratio is 1/255 or about 0.0039. 
 
-  
+For example:
+
+​	`datagen = ImageDataGenerator(rescale=1.0/255.0)`
+
+
 
 ## Position of MaxPooling:
 
