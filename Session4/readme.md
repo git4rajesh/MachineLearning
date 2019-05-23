@@ -170,9 +170,43 @@ Keep convolving till we have an input of size n * n Size where we have more numb
 - After a threshhold increase in BatchSize, the validation accuracy starts to drop.
 - Batch Size can be increased so as to optimally use the GPU available.This helps in reducing the computational time.
 
-When to add validation checks
 
-LR schedule and concept behind it
 
-Adam vs SGD
+## When to add validation checks:
 
+- Add Validation checks when we see our training accuracy gradually increasing .
+- Also when the output of the prediction(validation accuracy) is less than the training accuracy.
+- So we can add validation checks when we train so as to detect  Overfitting or Underfitting.
+- Adding Validation checks also helps in midway of a run, stop the training if we know we have reached the desired accuracy. By this we can minimize on computation time too.
+
+
+
+## LR schedule and concept behind it:
+
+- Learning rate schedules seek to adjust the learning rate during training by reducing the learning rate according to a pre-defined schedule. 
+- Common learning rate schedules include **time-based decay**, **step decay** and **exponential decay**.
+- Learning rate is a number we multiple our gradient descent.
+- The purpose of Adam algorithm is to minimize the loss.This is achieved via several steps wherein we start our kernels with arbitrary values and keep updating them as we move closer and closer to minimize loss.
+- The size of these steps taken to minimize loss depends on the learning rate
+
+**y1 = d(loss)/ d(old_weight) * learning_rate** 
+
+**new_weight = old_weight - y1**
+
+where the learning_rate varies from 0.001 to 01.So its a hyper-parameter which can be tuned and this is achieved by LR Schedule.
+
+
+
+## Adam vs SGD:
+
+1. The optimization algorithm (or optimizer) is the main approach used today for training a machine learning model to minimize its error rate.We have 
+
+   ​	a. Gradient descent variants like SGD
+
+   ​			SGD produces the same performance as regular gradient descent when the learning rate is low.
+
+   ​			Performs a parameter update for each training example x(i) and label y(i)
+
+   ​	b. Gradient descent optimization algorithms like Adam
+
+   ​			Essentially  Adaptive Moment Estimation(Adam) is an algorithm for gradient-based optimization of stochastic objective functions and computes individual adaptive learning rates for different parameters.
